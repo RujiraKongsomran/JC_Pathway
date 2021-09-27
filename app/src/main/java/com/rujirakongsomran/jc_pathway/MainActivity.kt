@@ -36,9 +36,9 @@ class MainActivity : ComponentActivity() {
 data class Message(val author: String, val body: String)
 
 @Composable
-fun MyApp(){
+fun MyApp() {
     JC_PathwayTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(color = Color.Yellow) {
             Greeting(name = "Android")
         }
     }
@@ -46,14 +46,10 @@ fun MyApp(){
 
 @Composable
 fun Greeting(name: String) {
-    Surface(
-        color = Color.Yellow
-    ) {
-        Text(
-            text = "Hello $name",
-            modifier = Modifier.padding(24.dp)
-        )
-    }
+    Text(
+        text = "Hello $name",
+        modifier = Modifier.padding(24.dp)
+    )
 }
 
 @Composable
