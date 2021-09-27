@@ -39,11 +39,12 @@ class MainActivity : ComponentActivity() {
 data class Message(val author: String, val body: String)
 
 @Composable
-fun MyScreenContent(){
+fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
     Column {
-        Greeting(name = "Android")
-        Divider(color = Color.Black)
-        Greeting(name = "there")
+        for (item in names) {
+            Greeting(name = item)
+            Divider(color = Color.Black)
+        }
     }
 }
 
@@ -149,7 +150,7 @@ fun PreviewGreeting() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewMyScreenContent(){
+fun PreviewMyScreenContent() {
     MyApp {
         MyScreenContent()
     }
