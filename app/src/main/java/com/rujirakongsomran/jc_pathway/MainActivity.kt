@@ -1,6 +1,5 @@
 package com.rujirakongsomran.jc_pathway
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,13 +29,28 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JC_PathwayTheme {
-                Conversation(SampleData.conversationSample)
+                Surface(color = MaterialTheme.colors.background) {
+                    Greeting(name = "Android")
+                }
             }
         }
     }
 }
 
 data class Message(val author: String, val body: String)
+
+
+@Composable
+fun Greeting(name: String) {
+    Surface(
+        color = Color.Yellow
+    ) {
+        Text(
+            text = "Hello $name",
+            modifier = Modifier.padding(24.dp)
+        )
+    }
+}
 
 @Composable
 fun MessageCard(msg: Message) {
@@ -97,7 +111,6 @@ fun Conversation(messages: List<Message>) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun PreviewConversation() {
     JC_PathwayTheme {
@@ -111,6 +124,14 @@ fun PreviewMessageCard() {
         MessageCard(
             msg = Message("Colleague", "Hey, take a look at Jetpack Compose, it's great!")
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewGreeting() {
+    JC_PathwayTheme {
+        Greeting(name = "Android")
     }
 }
 
