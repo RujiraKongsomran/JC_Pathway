@@ -28,17 +28,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JC_PathwayTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting(name = "Android")
-                }
-            }
+            MyApp()
         }
     }
 }
 
 data class Message(val author: String, val body: String)
 
+@Composable
+fun MyApp(){
+    JC_PathwayTheme {
+        Surface(color = MaterialTheme.colors.background) {
+            Greeting(name = "Android")
+        }
+    }
+}
 
 @Composable
 fun Greeting(name: String) {
@@ -130,8 +134,6 @@ fun PreviewMessageCard() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewGreeting() {
-    JC_PathwayTheme {
-        Greeting(name = "Android")
-    }
+    MyApp()
 }
 
