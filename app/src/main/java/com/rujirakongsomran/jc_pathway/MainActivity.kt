@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -29,13 +30,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                Greeting(name = "Android")
+                MyScreenContent()
             }
         }
     }
 }
 
 data class Message(val author: String, val body: String)
+
+@Composable
+fun MyScreenContent(){
+    Column {
+        Greeting(name = "Android")
+        Divider(color = Color.Black)
+        Greeting(name = "there")
+    }
+}
 
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
@@ -129,11 +139,19 @@ fun PreviewMessageCard() {
     }
 }
 
-@Preview(showBackground = true)
+
 @Composable
 fun PreviewGreeting() {
     MyApp {
         Greeting(name = "Android")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMyScreenContent(){
+    MyApp {
+        MyScreenContent()
     }
 }
 
