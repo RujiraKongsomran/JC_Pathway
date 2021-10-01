@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rujirakongsomran.jc_pathway.ui.theme.JC_PathwayTheme
+import org.w3c.dom.NameList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,28 +38,39 @@ data class Message(val author: String, val body: String)
 
 @Composable
 fun Counter(count: Int, updateCount: (Int) -> Unit) {
-    Button(onClick = { updateCount(count + 1) }) {
+    Button(
+        onClick = { updateCount(count + 1) },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = if (count > 5) Color.Green else Color.White
+        )
+    ) {
         Text("I've been clicked $count times")
     }
 }
 
 @Composable
-fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
+fun MyScreenContent(names: List<String> = List(1000) { "Hello Android #$it" }) {
     val counterState = remember {
         mutableStateOf(0)
     }
-    Column {
-        for (item in names) {
-            Greeting(name = item)
-            Divider(color = Color.Black)
-        }
-        Divider(color = Color.Transparent, thickness = 32.dp)
+    Column(modifier = Modifier.fillMaxHeight()) {
+        NameList(names, Modifier.weight(1f))
         Counter(
             count = counterState.value,
             updateCount = { newCount ->
                 counterState.value = newCount
             }
         )
+    }
+}
+
+@Composable
+fun NameList(names: List<String>, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
+        items(items = names) { name ->
+            Greeting(name = name)
+            Divider(color = Color.Black)
+        }
     }
 }
 
